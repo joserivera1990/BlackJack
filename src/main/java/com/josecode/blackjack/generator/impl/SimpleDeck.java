@@ -1,37 +1,36 @@
 package com.josecode.blackjack.generator.impl;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.josecode.blackjack.generator.Deck;
 import com.josecode.blackjack.model.Card;
+import com.josecode.blackjack.model.Pair;
 import com.josecode.blackjack.util.Stick;
 import com.josecode.blackjack.util.Util;
 
 public final class SimpleDeck implements Deck {
 
 	private Set<Card> cards;
-	private static final Set<String> NUMBER_CARDS = new HashSet<>(Arrays.asList("A","2","3","4","5","6","7","8","9","10","Q","J","K"));
 	
-	
-	public SimpleDeck() {
+	public SimpleDeck(List<Pair> listValues) {
 		cards = new LinkedHashSet<>();
-		this.createDeck();
+		this.createDeck(listValues);
 	}
 	
 	@Override
 	public Card nextRandomCard() {
 		Card cardRandom = cards.stream().skip(Util.randomInt(cards.size())).findFirst().get();
+		System.out.println(cardRandom);
 		cards.remove(cardRandom);
 		return cardRandom;
 	}
 		
-    private void createDeck() {
-		for (String numberCards : NUMBER_CARDS) {
+    private void createDeck(List<Pair> listValues) {
+		for (Pair number : listValues) {
 			for (Stick stick : Stick.values()) {
-				cards.add(new Card.CardBuilder(stick, numberCards).build());
+				cards.add(new Card.CardBuilder(stick, number).build());
 			}	
 		}
 	}

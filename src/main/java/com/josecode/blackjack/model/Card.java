@@ -5,21 +5,27 @@ import com.josecode.blackjack.util.Stick;
 public final class Card {
 
 	private Stick stick;
-	private String number;
+	private Pair valor;
 	
-	private Card(CardBuilder cardBuilder) {
-		this.stick = cardBuilder.stick;
-		this.number = cardBuilder.number;
+	public Stick getStick() {
+		return stick;
 	}
-	
+
+
+	public Pair getValor() {
+		return valor;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		result = prime * result + ((stick == null) ? 0 : stick.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -30,33 +36,35 @@ public final class Card {
 		if (getClass() != obj.getClass())
 			return false;
 		Card other = (Card) obj;
-		if (number == null) {
-			if (other.number != null)
+		if (valor == null) {
+			if (other.valor != null)
 				return false;
-		} else if (!number.equals(other.number))
+		} else if (!valor.equals(other.valor))
 			return false;
 		if (stick != other.stick)
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Card [stick=" + stick + ", number=" + number + "]";
+
+	private Card(CardBuilder cardBuilder) {
+		this.stick = cardBuilder.stick;
+		this.valor = cardBuilder.number;
 	}
 	
-	public Stick getStick() {
-		return stick;
+
+	@Override
+	public String toString() {
+		return stick + " " + valor;
 	}
-	public String getNumber() {
-		return number;
-	}
+	
+
 	
 	public static class CardBuilder {
 		private Stick stick;
-		private String number;
+		private Pair number;
 
-	    public CardBuilder(Stick stick, String number) {
+	    public CardBuilder(Stick stick, Pair number) {
 	      this.stick = stick;
 	      this.number = number;
 	    }
