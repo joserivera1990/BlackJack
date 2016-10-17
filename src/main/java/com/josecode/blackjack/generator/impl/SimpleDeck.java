@@ -21,8 +21,8 @@ public final class SimpleDeck implements Deck {
 	
 	@Override
 	public Card nextRandomCard() {
-		Card cardRandom = cards.stream().skip(Util.randomInt(cards.size())).findFirst().get();
-		System.out.println(cardRandom);
+		Card cardRandom = cards.stream().skip(Util.randomInt(cards.size()))
+				.findFirst().get();
 		cards.remove(cardRandom);
 		return cardRandom;
 	}

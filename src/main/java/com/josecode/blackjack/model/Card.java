@@ -58,8 +58,6 @@ public final class Card {
 		return stick + " " + valor;
 	}
 	
-
-	
 	public static class CardBuilder {
 		private Stick stick;
 		private Pair number;

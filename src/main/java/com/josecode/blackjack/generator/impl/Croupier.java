@@ -1,12 +1,13 @@
 package com.josecode.blackjack.generator.impl;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.josecode.blackjack.generator.Player;
+import com.josecode.blackjack.message.Message;
 import com.josecode.blackjack.model.Card;
 
-public final class Croupier implements Player {
+public final class Croupier extends AbstractPlayer implements  Message {
    
 	
 	private Set<Card> cards;
@@ -14,27 +15,38 @@ public final class Croupier implements Player {
 	public Croupier() {
 		cards = new LinkedHashSet<>();
 	}
-	
-	@Override
-	public int tellSumCards() {
-		return 0;		
-	}
-	
-	@Override
-	public boolean automaticallyPlant() {
-		return false;
-	}
-	
+		
 	@Override
 	public boolean addCard(Card card) {
-		cards.add(card);
-		int sum = cards.stream().map(i->i.getValor().getNumber())
-				                .mapToInt(Integer::intValue)
-				                .sum();
-		System.out.println(sum);
-		if (sum == 21 || sum > 21 ) {
+		int sumCards = sumCards(cards);
+		if (sumCards >= 17 && sumCards <= 21 ) {
 			return true;
-		} 
+		} else if (sumCards > 21) {
+			return specialCards(17, cards);
+		}
+		cards.add(card);
+		getText(card);
 		return false;	
+	}
+		
+	@Override
+	public String getText(Card card) {
+		//System.out.println("Coupier -> "+ card);
+		if (cards.size() == 2) {
+			System.out.println("Coupier -> "+ "XXXXXX");
+		} else {
+			System.out.println("Coupier -> "+ card);
+		}
+		return ""; 
+	}
+	
+	@Override
+	public Set<Card> getCards() {
+		return Collections.unmodifiableSet(cards);
+	}
+	
+	@Override
+	public void addAllCards(Set<Card> cards) {
+		this.cards.addAll(cards);
 	}
 }

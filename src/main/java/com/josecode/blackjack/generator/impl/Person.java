@@ -1,41 +1,47 @@
 package com.josecode.blackjack.generator.impl;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.josecode.blackjack.generator.Player;
+import com.josecode.blackjack.message.Message;
 import com.josecode.blackjack.model.Card;
 
-public final class Person implements Player{
+public final class Person extends AbstractPlayer implements  Message {
 	
 	private Set<Card> cards;
-	
 	
 	public Person() {
 		cards = new LinkedHashSet<>();
 	}
-	
-	@Override
-	public int tellSumCards() {
-		return 0;
-		
-	}
-	
-	@Override
-	public boolean automaticallyPlant() {
-		return false;
-	}
-	
+			
 	@Override
 	public boolean addCard(Card card) {
 		cards.add(card);
-		int sum = cards.stream().map(i->i.getValor().getNumber())
-								.mapToInt(Integer::intValue)
-								.sum();
-		System.out.println("sum"+sum);
-		if (sum == 21 || sum > 21 ) {
+		getText(card);
+		int sumCards = sumCards(cards);
+		if (sumCards == 21) {
 			return true;
-		} 
+		} else if (sumCards > 21){
+			return specialCards(21, cards);
+		}
 		return false;	
 	}
+		
+	@Override
+	public String getText(Card card) {
+		System.out.println("Person -> "+ card);
+		return ""; 
+	}
+	
+	@Override
+	public Set<Card> getCards() {
+		return  Collections.unmodifiableSet(cards);
+	}
+	
+	@Override
+	public void addAllCards(Set<Card> cards) {
+		this.cards.addAll(cards);
+	}
+		
 }

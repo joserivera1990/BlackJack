@@ -7,5 +7,6 @@ import com.josecode.blackjack.model.Card;
 public interface Deck {
  
 	  Card nextRandomCard();
+	  
 	  Set<Card> getCards();
 }
