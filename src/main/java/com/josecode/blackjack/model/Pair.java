@@ -5,7 +5,7 @@ public final class Pair {
 	private final String codeCard;
 
 	private final Integer number;
-    
+    	
 	private Pair(final String codeCard, final Integer number) {
 		this.codeCard = codeCard;
 		this.number = number;
@@ -15,8 +15,6 @@ public final class Pair {
 		return new Pair(codeCard, number);
 	}
 	
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -3,6 +3,8 @@ package com.josecode.blackjack;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.josecode.blackjack.generator.Deck;
 import com.josecode.blackjack.generator.Judge;
@@ -21,30 +23,38 @@ public final class Main {
 	}
 	
 	public static void main(String[] args) {
-		
+		Map<String, String> phrases = new HashMap<>();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-			Judge judge = new SimpleJudge();
-			Reader reader = new Reader(br);
-			reader.read("Enter para Iniciar Juego");
 			Configuration conf = new Configuration();
-			Deck deck = new SimpleDeck(conf.getValues());
-	        Player person = new Person();
-	        Player croupier = new Croupier();
-	        judge.startingCards(person, croupier, deck);
-	        String keyword = reader.read("Teclear x para pedir Otra carta o y para plantarse");
-	        if (keyword.equalsIgnoreCase("X")) {
-		        while (!person.addCard(deck.nextRandomCard())) {
-		        	keyword = reader.read("Teclear x para pedir Otra carta o y para plantarse");
-		            if (keyword.equalsIgnoreCase("Y")) {
-		            	break;
-		            }	           
+			Reader reader = new Reader(br);
+			String language = reader.read("Choose code language: "+conf.getLanguages());
+			phrases = conf.getMapMessages().get(language);
+			if (phrases != null) {
+
+				Judge judge = new SimpleJudge();	
+				reader.read(phrases.get("start"));
+				
+				Deck deck = new SimpleDeck(conf.getValues());
+		        Player person = new Person();
+		        Player croupier = new Croupier();
+		        judge.startingCards(person, croupier, deck);
+		        String keyword = reader.read(phrases.get("askCard"));
+		        if (keyword.equalsIgnoreCase("X")) {
+			        while (!person.addCard(deck.nextRandomCard())) {
+			        	keyword = reader.read(phrases.get("askCard"));
+			            if (keyword.equalsIgnoreCase("X")) {
+			            	break;
+			            }	           
+			        }
+		        } 
+		        while (!croupier.addCard(deck.nextRandomCard())) {
+		        	continue;
 		        }
-	        } 
-	        while (!croupier.addCard(deck.nextRandomCard())) {
-	        	
-	        }
-	        judge.giveWinner(person,croupier);
-	        
+		        
+		        judge.giveWinner(person,croupier);
+			} else {
+				System.out.println("Code wrong");
+			}
 		} catch (IOException ioe) {
 			System.out.println(ioe);
 		}

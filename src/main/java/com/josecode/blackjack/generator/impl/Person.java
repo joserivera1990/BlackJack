@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import com.josecode.blackjack.message.Message;
+import com.josecode.blackjack.message.Messages;
 import com.josecode.blackjack.model.Card;
 
-public final class Person extends AbstractPlayer implements  Message {
+public final class Person extends AbstractPlayer implements  Messages {
 	
 	private Set<Card> cards;
 	
