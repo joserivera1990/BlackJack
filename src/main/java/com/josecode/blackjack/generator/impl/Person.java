@@ -9,7 +9,7 @@ import com.josecode.blackjack.model.Card;
 
 public final class Person extends AbstractPlayer implements  Messages {
 	
-	private Set<Card> cards;
+	 Set<Card> cards;
 	
 	public Person() {
 		cards = new LinkedHashSet<>();
@@ -18,7 +18,7 @@ public final class Person extends AbstractPlayer implements  Messages {
 	@Override
 	public boolean addCard(Card card) {
 		cards.add(card);
-		getText(card);
+		printText(card);
 		int sumCards = sumCards(cards);
 		if (sumCards == 21) {
 			return true;
@@ -29,9 +29,8 @@ public final class Person extends AbstractPlayer implements  Messages {
 	}
 		
 	@Override
-	public String getText(Card card) {
+	public void printText(Card card) {
 		System.out.println("Person -> "+ card);
-		return ""; 
 	}
 	
 	@Override

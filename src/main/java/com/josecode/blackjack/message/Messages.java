@@ -5,6 +5,6 @@ import com.josecode.blackjack.model.Card;
 @FunctionalInterface
 public interface Messages {
 
-	String getText(Card card);
+	void printText(Card card);
 	
 }

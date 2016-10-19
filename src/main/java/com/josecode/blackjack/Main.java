@@ -51,7 +51,7 @@ public final class Main {
 		        	continue;
 		        }
 		        
-		        judge.giveWinner(person,croupier);
+		        judge.giveWinner(person,croupier,phrases);
 			} else {
 				System.out.println("Code wrong");
 			}

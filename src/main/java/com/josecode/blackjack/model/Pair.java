@@ -1,5 +1,7 @@
 package com.josecode.blackjack.model;
 
+import java.util.Objects;
+
 public final class Pair {
    
 	private final String codeCard;
@@ -17,12 +19,7 @@ public final class Pair {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((codeCard == null) ? 0 : codeCard.hashCode());
-		result = prime * result + ((number == null) ? 0 : number.hashCode());
-		return result;
+		return Objects.hash(codeCard,number);
 	}
 
 	@Override

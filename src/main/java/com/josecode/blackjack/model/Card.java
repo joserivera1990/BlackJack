@@ -1,11 +1,13 @@
 package com.josecode.blackjack.model;
 
+import java.util.Objects;
+
 import com.josecode.blackjack.util.Stick;
 
 public final class Card {
 
-	private Stick stick;
-	private Pair valor;
+	private final Stick stick;
+	private final Pair valor;
 	
 	public Stick getStick() {
 		return stick;
@@ -15,15 +17,10 @@ public final class Card {
 	public Pair getValor() {
 		return valor;
 	}
-
-
+  
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
-		result = prime * result + ((stick == null) ? 0 : stick.hashCode());
-		return result;
+		return Objects.hash(valor,stick);
 	}
 
 

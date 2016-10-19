@@ -1,38 +1,32 @@
 package com.josecode.blackjack.model;
 
 import java.util.Map;
+import java.util.Objects;
 
-public class Message {
-     private Language language;
-     private Map<String, String> phrases;
+public final class Message {
+	
+     private final Language language;
+     private final Map<String, String> phrases;
      
 	public Language getLanguage() {
 		return language;
 	}
-	public void setLanguage(Language language) {
-		this.language = language;
-	}
+	
 	public Map<String, String> getPhrases() {
 		return phrases;
 	}
-	public void setPhrases(Map<String, String> phrases) {
-		this.phrases = phrases;
-	}
-	
-	public Message(Language language, Map<String, String> phrases) {
+		
+	public Message(final Language language, final Map<String, String> phrases) {
 		super();
 		this.language = language;
 		this.phrases = phrases;
 	}
+	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((language == null) ? 0 : language.hashCode());
-		result = prime * result + ((phrases == null) ? 0 : phrases.hashCode());
-		return result;
+		return Objects.hash(language,phrases);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

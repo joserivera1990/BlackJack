@@ -10,7 +10,7 @@ import com.josecode.blackjack.model.Card;
 public final class Croupier extends AbstractPlayer implements  Messages {
    
 	
-	private Set<Card> cards;
+	Set<Card> cards;
 	
 	public Croupier() {
 		cards = new LinkedHashSet<>();
@@ -25,19 +25,17 @@ public final class Croupier extends AbstractPlayer implements  Messages {
 			return specialCards(17, cards);
 		}
 		cards.add(card);
-		getText(card);
+		printText(card);
 		return false;	
 	}
 		
 	@Override
-	public String getText(Card card) {
-		//System.out.println("Coupier -> "+ card);
+	public void printText(Card card) {
 		if (cards.size() == 2) {
 			System.out.println("Coupier -> "+ "XXXXXX");
 		} else {
 			System.out.println("Coupier -> "+ card);
 		}
-		return ""; 
 	}
 	
 	@Override

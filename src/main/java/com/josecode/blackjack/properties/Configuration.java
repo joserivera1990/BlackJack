@@ -12,7 +12,6 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 import com.josecode.blackjack.model.Language;
-import com.josecode.blackjack.model.Message;
 import com.josecode.blackjack.model.Pair;
 
 public final class Configuration {
