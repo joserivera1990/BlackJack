@@ -14,5 +14,4 @@ public interface Player {
 	
 	boolean specialCards(int numberValidate,Set<Card> cards);
 	
-	void addAllCards(Set<Card> cards);
 }

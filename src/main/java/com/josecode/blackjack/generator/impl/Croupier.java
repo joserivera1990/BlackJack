@@ -43,8 +43,4 @@ public final class Croupier extends AbstractPlayer implements  Messages {
 		return Collections.unmodifiableSet(cards);
 	}
 	
-	@Override
-	public void addAllCards(Set<Card> cards) {
-		this.cards.addAll(cards);
-	}
 }

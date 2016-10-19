@@ -18,7 +18,7 @@ public class AbstractPlayerTest {
 		Set<Card> setCards = buildCards();
 		person.cards = setCards;
 		person.specialCards(21, setCards);
-		assertEquals(1, person.getCards().stream().skip(1).findFirst().get().getValor().getNumber().intValue());	
+		assertEquals(1, person.cards.stream().skip(1).findFirst().get().getValor().getNumber().intValue());	
 	}
 	
 	@Test
@@ -27,8 +27,8 @@ public class AbstractPlayerTest {
 		Set<Card> setCards = buildCardsOne();
 		person.cards = setCards;
 		person.specialCards(21, setCards);
-		assertEquals(7, person.getCards().stream().skip(0).findFirst().get().getValor().getNumber().intValue());
-		assertEquals(10, person.getCards().stream().skip(1).findFirst().get().getValor().getNumber().intValue());	
+		assertEquals(7, person.cards.stream().skip(0).findFirst().get().getValor().getNumber().intValue());
+		assertEquals(10, person.cards.stream().skip(1).findFirst().get().getValor().getNumber().intValue());	
 	}
 	
 	private Set<Card> buildCards() {
